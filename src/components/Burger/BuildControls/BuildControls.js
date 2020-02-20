@@ -8,7 +8,6 @@ const controls = [
   { label: 'Cheese', type: 'cheese' },
   { label: 'Meat', type: 'meat' }
 ];
-console.log(controls[0].type);
 
 
 const buildConrols = ( props ) => (
@@ -21,6 +20,10 @@ const buildConrols = ( props ) => (
                     removed={() => props.ingredientRemove(control.type)}
                     disabled={props.disabled[control.type]} />
     ))}
+    <button 
+      className={BuildControlStyles.OrderButton}
+      disabled={!props.purchasable}
+      onClick={props.ordered}>ORDER NOW</button>
   </div>
 );
 
