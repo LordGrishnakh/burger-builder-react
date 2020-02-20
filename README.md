@@ -1,1 +1,1 @@
-A sample app for tutorial
+A simple React app for practice
