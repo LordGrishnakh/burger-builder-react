@@ -15,11 +15,14 @@ class Layout extends Component {
   sideDrawerOpenHandler = () => {
     this.setState({showSideDrawer: true})
   }
+  homeRedirectHandler = () => {
+    window.location.href = '/';
+  }
 
   render() {
     return (
       <AuxComponent>
-        <Toolbar click={this.sideDrawerOpenHandler}/>
+        <Toolbar click={this.sideDrawerOpenHandler} clickLogo={this.homeRedirectHandler} />
         <SideDrawer closed={this.sideDrawerCloseHandler} open={this.state.showSideDrawer}/>
         <main className={styles.Content}>
           {this.props.children}
