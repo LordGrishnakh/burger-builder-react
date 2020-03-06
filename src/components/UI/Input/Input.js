@@ -2,13 +2,11 @@ import React from 'react';
 import InputStyling from './Input.module.css';
 
 const input = ( props ) => {
-  let validationError = null
   let inputElement = null;
   const inputStyles = [InputStyling.InputElement];
 
-  if (props.invalid && props.shouldValidate) {
+  if (props.invalid && props.shouldValidate && props.touched) {
     inputStyles.push(InputStyling.Invalid);
-    validationError = <p>Enter Valid {props.elementType}</p>
   }
 
   switch (props.elementType) {
@@ -54,7 +52,6 @@ const input = ( props ) => {
     <div className={InputStyling.Input}>
       <label className={InputStyling.Label}>{props.label}</label>
       { inputElement }
-      { validationError }
     </div>
   );
 }
