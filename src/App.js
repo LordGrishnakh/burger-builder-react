@@ -5,6 +5,7 @@ import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Checkout from './containers/Checkout/Checkout';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Logout from './containers/Auth/Logout/Logout';
+import Shop from './components/Shop/Shop';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
 
@@ -22,6 +23,7 @@ const App = props => {
   let routes = (
     <Switch>
       <Route path="/auth" component={auth} />
+      <Route path="/shop" component={Shop} />
       <Route path="/" exact component={BurgerBuilder} />
       <Redirect to="/" />
     </Switch>
@@ -31,6 +33,7 @@ const App = props => {
       <Switch>
         <Route path="/checkout" component={Checkout} />
         <Route path="/orders" component={orders} />
+        <Route path="/shop" component={Shop} />
         <Route path="/logout" component={Logout} />
         <Route path="/auth" component={auth} />
         <Route path="/" exact component={BurgerBuilder} />
