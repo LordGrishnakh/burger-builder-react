@@ -1,43 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from '../components/UI/Modal/Modal';
 import AuxComponent from './AuxComponent';
 
 const withErrorHandler = (WrappedComponent, axios) => {
-  return class extends Component {
-    state = {
-      error: null
+  return props => {
+    const [error, setError] = useState(null);
+
+    const requestInterceptor = axios.interceptors.request.use(req => {
+      setError(null);
+      return req;
+    });
+    const responseInterceptor = axios.interceptors.response.use(res => res, err => {
+      setError(err);
+    });
+
+    useEffect(() => {
+      return () => {
+        axios.interceptors.request.eject(requestInterceptor);
+        axios.interceptors.request.eject(responseInterceptor);
+      };
+    }, [requestInterceptor, responseInterceptor]);
+
+    const errorConfirmedHandler = () => {
+      setError(null);
     }
 
-
-    componentDidMount() {
-      this.requestInterceptor = axios.interceptors.request.use(req => {
-        this.setState({ error: null });
-        return req;
-      });
-      this.responseInterceptor = axios.interceptors.response.use(res => res, error => {
-        this.setState({ error: error });
-      });
-    }
-
-    componentWillUnmount() {
-      axios.interceptors.request.eject(this.requestInterceptor);
-      axios.interceptors.request.eject(this.responseInterceptor);
-    }
-
-    errorConfirmedHandler = () => {
-      this.setState({ error: null });
-    }
-
-    render() {
-      return (
-        <AuxComponent>
-          <Modal show={this.state.error} hideModal={this.errorConfirmedHandler}>
-            {this.state.error ? this.state.error.message: null}
-          </Modal>
-          <WrappedComponent {...this.props} />
-        </AuxComponent>
-      );
-    }
+    return (
+      <AuxComponent>
+        <Modal show={error} hideModal={errorConfirmedHandler}>
+          {error ? error.message : null}
+        </Modal>
+        <WrappedComponent {...props} />
+      </AuxComponent>
+    );
   }
 }
 

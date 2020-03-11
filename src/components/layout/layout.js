@@ -1,36 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import AuxComponent from '../../HOC/AuxComponent';
 import styles from './layout.module.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import { connect } from 'react-redux';
 
-class Layout extends Component {
-  state = {
-    showSideDrawer: false
-  }
+const Layout = props => {
+  const [sideDrawerVisible, setSideDrawer] = useState(false);
 
-  sideDrawerCloseHandler = () => {
-    this.setState({showSideDrawer: false})
+  const sideDrawerCloseHandler = () => {
+    setSideDrawer(false);
   }
-  sideDrawerOpenHandler = () => {
-    this.setState({showSideDrawer: true})
+  const sideDrawerOpenHandler = () => {
+    setSideDrawer(!sideDrawerVisible);
   }
-  homeRedirectHandler = () => {
+  const homeRedirectHandler = () => {
     window.location.href = '/';
   }
 
-  render() {
-    return (
-      <AuxComponent>
-        <Toolbar click={this.sideDrawerOpenHandler} clickLogo={this.homeRedirectHandler} isAuth={this.props.isAuthenticated} />
-        <SideDrawer closed={this.sideDrawerCloseHandler} open={this.state.showSideDrawer} isAuth={this.props.isAuthenticated} />
-        <main className={styles.Content}>
-          {this.props.children}
-        </main>
-      </AuxComponent> 
-    );
-  }
+  return (
+    <AuxComponent>
+      <Toolbar click={sideDrawerOpenHandler} clickLogo={homeRedirectHandler} isAuth={props.isAuthenticated} />
+      <SideDrawer closed={sideDrawerCloseHandler} open={sideDrawerVisible} isAuth={props.isAuthenticated} />
+      <main className={styles.Content}>
+        {props.children}
+      </main>
+    </AuxComponent> 
+  );
 }
 
 const mapStateToProps = state => {
