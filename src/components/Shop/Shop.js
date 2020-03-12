@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProductList from './ProductList/ProductList';
 
 const Shop = props => {
-  return(
-    <div>123</div>
+  return (
+    <React.Fragment>
+      <ProductList />
+    </React.Fragment>
   );
 };
 
-export default Shop;
+
+
+export default Shop

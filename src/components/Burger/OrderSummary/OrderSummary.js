@@ -13,14 +13,14 @@ const OrderSummary = props => {
     <AuxContainer>
       <h3>Your Order</h3>
       <p>Delicious burger with the following ingredients: </p>
-      <ul>
+      <ul style={{listStyle: 'none'}}>
         {ingredientSummary}
       </ul>
   <p><strong>Total Price: {props.price} &#8381;</strong></p>
       <p>Continue to Checkout?</p>
 
       <Button btnType="Danger" clicked={props.purchaseCanceled}>CANCEL</Button>
-      <Button btnType="Success" clicked={props.purchaseContinued}>CONTINUE</Button>
+      <Button btnType="Success" clicked={props.purchaseContinued}>{props.orderNow ? 'BUY NOW' : 'CONTINUE'}</Button>
     </AuxContainer>
   );
 };

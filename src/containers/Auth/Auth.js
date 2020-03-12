@@ -133,7 +133,7 @@ const Auth = props => {
         {form}
         <Button btnType="Success">SUBMIT</Button>
       </form>
-      <Button btnType="Danger" clicked={switchAuthModeHandler}> {isSignup ? 'Already has an account? - SIGNIN' : 'Click for create an account SIGNUP'} </Button>
+      <Button btnType="Danger" clicked={switchAuthModeHandler}> {isSignup ? 'If you already have an account? - Click here' : 'Click for create an account SIGNUP'} </Button>
     </div>
   );
 }

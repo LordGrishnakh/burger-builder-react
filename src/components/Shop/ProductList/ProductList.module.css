@@ -1,0 +1,12 @@
+.Container {
+  margin: 1rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+@media (max-width: 500px) {
+  .Container {
+    display: block;
+  }
+}

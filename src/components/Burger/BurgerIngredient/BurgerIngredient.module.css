@@ -16,7 +16,7 @@
 
 .Meat {
   width: 90%;
-  height: 10%;
+  height: 14%;
   background: linear-gradient(#7f3608, #702e05);
   border-radius: 15px;
 }
@@ -37,6 +37,6 @@
 
 .Bacon {
   width: 80%;
-  height: 3%;
+  height: 8%;
   background: linear-gradient(#bf3813, #c45e38);
 }
