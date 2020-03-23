@@ -4,8 +4,9 @@ import NavigationItems from './NavigationItem/NavigationItem';
 const navigationItems = (props) => {
   return (
     <ul className={NavigationItemsStyling.NavigationItems}>
+      <NavigationItems link="/">Home</NavigationItems>
       <NavigationItems link="/shop">Main Shop</NavigationItems>
-      <NavigationItems link="/">Burger Builder</NavigationItems>
+      <NavigationItems link="/burgerBuilder">Burger Builder</NavigationItems>
       { props.isAuthenticated 
           ? <NavigationItems link="/orders">Orders</NavigationItems>
           : null}

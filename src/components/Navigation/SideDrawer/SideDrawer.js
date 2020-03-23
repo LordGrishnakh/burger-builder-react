@@ -4,6 +4,7 @@ import NavigationItems from '../Toolbar/NavigationItems/NavigationItems'
 import SideDrawerStyling from './SideDrawer.module.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import AuxComponent from '../../../HOC/AuxComponent';
+import { connect } from 'react-redux';
 
 const sideDrawer = ( props ) => {
   let attachedClasses = [SideDrawerStyling.SideDrawer, SideDrawerStyling.Close];
@@ -17,11 +18,17 @@ const sideDrawer = ( props ) => {
       <div className={attachedClasses.join(' ')} onClick={props.closed}>
         <Logo height="11%" />
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={props.isAuthenticated} />
         </nav>
       </div>
     </AuxComponent>
   );
 };
 
-export default sideDrawer;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null
+  };
+};
+
+export default connect(mapStateToProps, null)(sideDrawer);

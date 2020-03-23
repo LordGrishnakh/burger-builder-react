@@ -1,0 +1,26 @@
+.Container {
+  height: 75vh;
+  width: 100%;
+  background: brown;
+  border-top: 4px solid red;
+  display: flex;
+}
+.Container img {
+  padding: 2rem;
+  flex: 4;
+}
+
+.HistoryCard {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+}
+.HistoryCard h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+.HistoryCard p {
+  font-size: 1.4rem;
+}

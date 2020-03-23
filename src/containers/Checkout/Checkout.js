@@ -11,7 +11,6 @@ const Checkout = props => {
 
   const checkoutCancelledHandler = () => {
     props.history.goBack();
-    console.log("Don't forget to change that when adding more pages");
   }
 
   const checkoutApprovedHandler = () => {

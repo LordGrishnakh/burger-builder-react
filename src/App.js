@@ -6,6 +6,7 @@ import Checkout from './containers/Checkout/Checkout';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import Logout from './containers/Auth/Logout/Logout';
 import Shop from './components/Shop/Shop';
+import LandingPage from './components/LandingPage/LandingPage';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
 
@@ -13,18 +14,20 @@ const orders = React.lazy(() => import('./containers/Orders/Orders'));
 const auth = React.lazy(() => import('./containers/Auth/Auth'));
 
 const App = props => {
-
+  const { onTryAutoSignup } = props;
   // const { onTryAutoSignup } = props
 
   useEffect(() => {
-    props.onTryAutoSignup();
-  }, [])
+    onTryAutoSignup();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onTryAutoSignup])
 
   let routes = (
     <Switch>
       <Route path="/auth" component={auth} />
       <Route path="/shop" component={Shop} />
-      <Route path="/" exact component={BurgerBuilder} />
+      <Route path="/burgerBuilder" exact component={BurgerBuilder} />
+      <Route path="/" exact component={LandingPage} />
       <Redirect to="/" />
     </Switch>
   );
@@ -36,7 +39,8 @@ const App = props => {
         <Route path="/checkout" component={Checkout} />
         <Route path="/logout" component={Logout} />
         <Route path="/auth" component={auth} />
-        <Route path="/" exact component={BurgerBuilder} />
+        <Route path="/burgerBuilder" component={BurgerBuilder} />
+        <Route path="/" exact component={LandingPage} />
         <Redirect to="/" />
       </Switch>
     );

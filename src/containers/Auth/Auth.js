@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 const Auth = props => {
+  const {buildingBurger, authRedirectPath, onSetAuthRedirectPath} = props;
   const [authForm, setAuthForm] = useState({
       email: {
         elementType: 'input',
@@ -43,10 +44,10 @@ const Auth = props => {
   const [isSignup, setIsSignup] = useState(true);
 
   useEffect(() => {
-    if(!props.buildingBurger && props.authRedirectPath !== '/') {
-      props.onSetAuthRedirectPath();
+    if(!buildingBurger && authRedirectPath !== '/') {
+      onSetAuthRedirectPath();
     }
-  }, []);
+  }, [buildingBurger, authRedirectPath, onSetAuthRedirectPath]);
 
   const checkValidity = (value, rules) => {
     let isValid = true;

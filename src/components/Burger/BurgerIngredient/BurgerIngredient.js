@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './BurgerIngredient.module.css';
 import PropTypes from 'prop-types';
 
-import burgerTop from '../../../assets/images/burger_bread_top.jpg';
+import burgerTop from '../../../assets/images/UpperBulka.png';
 import burgerBottom from '../../../assets/images/burger_bread_bottom.png'
 import cheese from '../../../assets/images/cheese.png'
 import meat from '../../../assets/images/meat.png'

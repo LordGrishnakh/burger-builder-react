@@ -24,7 +24,6 @@ const ProductList = props => {
     setIsPurchasing(true);
   };
   const purchaseContinueHandler = () => {
-    console.log('continued');
     const orders = {
       ingredients: products[burgerId].ingredients,
       price: products[burgerId].price,
@@ -47,7 +46,6 @@ const ProductList = props => {
                         purchaseContinued={purchaseContinueHandler}
                         orderNow={true}
                         price={products[burgerId].price} />
-  console.log(products)
   return (
     <React.Fragment>
       <Modal show={isPurchasing} hideModal={hideModalHandler}>

@@ -6,3 +6,8 @@
   margin: 10 auto;
   box-sizing: border-box;
 }
+
+.ProgressBar {
+  display: block;
+  margin: auto;
+}
