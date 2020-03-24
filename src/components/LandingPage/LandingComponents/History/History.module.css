@@ -24,3 +24,26 @@
 .HistoryCard p {
   font-size: 1.4rem;
 }
+
+@media (max-width: 500px) {
+  .Container {
+    height: auto;
+    display: block;
+  }
+  .Container img {
+    padding: 1rem 0 0 0;
+    width: 90%;
+  }
+  .HistoryCard {
+    flex: 6;
+    display: block;
+    padding: 2rem;
+  }
+  .HistoryCard h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0rem;
+  }
+  .HistoryCard p {
+    font-size: 1.1rem;
+  }
+}

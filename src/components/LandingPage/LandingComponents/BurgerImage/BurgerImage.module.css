@@ -51,3 +51,21 @@
 .BBLink:hover {
   background-color: rgb(214, 189, 189);
 }
+
+@media (max-width: 500px) {
+  .Image {
+    height: auto;  
+  }
+  .Title {
+    font-size: 2rem;
+  }
+  
+  .Timeline {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+  .BBLink {
+    font-size: 1.6rem;
+    padding: 1rem 2rem;
+  }
+}

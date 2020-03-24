@@ -40,3 +40,17 @@
 .ShopLink:hover {
   background: lightgray;
 }
+
+@media (max-width: 500px) {
+  .Container {
+    display: block;
+    padding: 3rem;
+    width: 100%;
+  }
+  .Sample {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+}

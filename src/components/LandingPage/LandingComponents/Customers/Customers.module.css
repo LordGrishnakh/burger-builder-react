@@ -35,3 +35,15 @@
 .CustomerCard i {
   color: #ffa45c;
 }
+
+@media(max-width: 500px) {
+  .Container {
+    height: auto;
+    display: block;
+  }
+  .CustomerCard {
+    width: 80%;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+  }
+}
