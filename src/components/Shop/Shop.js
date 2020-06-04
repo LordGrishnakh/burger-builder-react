@@ -1,14 +1,14 @@
-import React from 'react';
-import ProductList from './ProductList/ProductList';
+import React, { useState } from "react";
+import ProductList from "./ProductList/ProductList";
+import ShopStyling from "./ShopStyling.module.css";
+import SelectedProduct from "./SelectedProduct/SelectedProduct";
 
-const Shop = props => {
+const Shop = (props) => {
   return (
-    <React.Fragment>
+    <div className={ShopStyling.Shop}>
       <ProductList />
-    </React.Fragment>
+    </div>
   );
 };
 
-
-
-export default Shop
+export default Shop;

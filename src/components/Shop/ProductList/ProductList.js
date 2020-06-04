@@ -7,6 +7,7 @@ import { productsShop } from './../data';
 import ProductListStyles from './ProductList.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import SelectedProduct from '../SelectedProduct/SelectedProduct';
 
 
 const ProductList = props => {
@@ -14,6 +15,12 @@ const ProductList = props => {
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [burgerId, setBurgerId] = useState(0);
 
+  const [selectedProduct, setSelectedProduct] = useState(null)
+
+  
+  const onProductSelect = (product) => {
+    setSelectedProduct(product);
+  }
 
   const authRedirect = () => {
     window.location.href = "/auth";
@@ -52,8 +59,10 @@ const ProductList = props => {
         {props.isAuthenticated ? orderSummary : <React.Fragment><div>You must have an account to continue</div><Button btnType="Success" clicked={authRedirect}>Authenticate Here</Button></React.Fragment>}
       </Modal>
       <div className={ProductListStyles.Container}>
+      <SelectedProduct selectedProduct={selectedProduct} />
+
         {products.map((product, key)=>{
-          return <Product key={key} title={product.title} imgURL={product.img} price={product.price} click={clickHandler.bind(this, product.id)} />
+          return <Product key={key} title={product.title} imgURL={product.img} price={product.price} click={onProductSelect.bind(this, product.id)} />
         })}
       </div>
     </React.Fragment>

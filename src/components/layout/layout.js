@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import AuxComponent from '../../HOC/AuxComponent';
-import styles from './layout.module.css';
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import { connect } from 'react-redux';
@@ -22,7 +21,7 @@ const Layout = props => {
     <AuxComponent>
       <Toolbar click={sideDrawerOpenHandler} clickLogo={homeRedirectHandler} isAuth={props.isAuthenticated} />
       <SideDrawer closed={sideDrawerCloseHandler} open={sideDrawerVisible} isAuth={props.isAuthenticated} />
-      <main className={styles.Content}>
+      <main>
         {props.children}
       </main>
     </AuxComponent> 

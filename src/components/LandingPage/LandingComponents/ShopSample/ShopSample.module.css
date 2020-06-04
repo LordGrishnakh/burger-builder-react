@@ -6,39 +6,9 @@
   padding: 5rem;
   background-color: brown;
 }
-
-.Sample {
-  width: 30%;
-  height: 40vh;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-
-  margin-left: 2rem;
-  border: 3px solid black;
-  border-radius: 15px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.Title {
-  color: white;
-  margin-bottom: 2rem;
-}
-
-.ShopLink {
-  color: red;
-  background-color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 2rem;
-  border: 5px solid red;
-  border-radius: 20px;
-}
-.ShopLink:hover {
-  background: lightgray;
+.Box {
+  width: 100%;
+  background-color: #ac3f21;
 }
 
 @media (max-width: 500px) {

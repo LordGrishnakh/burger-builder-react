@@ -2,14 +2,22 @@
   width: 100%;
   height: 75vh;
 
+  background-color: #ac3f21;
+
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 
+}
+.ContentBox {
+
+  padding: 2rem;
+  z-index: 15;
 }
 
 .Delivery {
@@ -19,17 +27,23 @@
   background-color: red;
   padding: 0.5rem 1rem;
   border-radius: 15px;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   cursor: pointer;
+
 }
 .Delivery:hover {
   background-color: rgb(185, 48, 48);
+}
+.Delivery:focus {
+  outline: none;
 }
 
 .Title {
   color: white;
   text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 4rem;
+
+  animation: slideTextFromRight 1s ease;
 }
 
 .Timeline {
@@ -37,19 +51,71 @@
   font-size: 5.2rem;
   color: white;
   margin-bottom: 3rem;
+
+  animation: slideTextFromLeft 1s ease-out;
 }
 
 .BBLink {
   background: white;
   color: red;
   font-size: 3rem;
+  font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
   padding: 1rem 2rem;
   border-radius: 50px;
+
 }
 .BBLink:hover {
-  background-color: rgb(214, 189, 189);
+  /* background-color: rgb(214, 189, 189); */
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.BBLink:visited,
+.BBLink:link {
+  transition: all 0.2s;
+  position: relative;
+}
+.BBLink:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.BtnWhite {
+  background-color: white;
+  /* color: #9e9292; */
+}
+.BBLink::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+.BtnWhite::after {
+  background-color: white;
+}
+.BBLink:hover::after {
+  transform: scaleX(1.1) scaleY(1.2);
+  opacity: 0;
+}
+
+.Overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75vh;
+}
+.ContentBox p {
+  font-size: 2rem;
+  margin-top: 2rem;
+  color: white;
 }
 
 @media (max-width: 500px) {
@@ -69,3 +135,32 @@
     padding: 1rem 2rem;
   }
 }
+
+@keyframes slideTextFromLeft {
+  0% {
+    transform: translateX(-200px);
+  }
+
+  80% {
+    transform: translateX(50px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slideTextFromRight {
+  0% {
+    transform: translateX(200px);
+  }
+
+  80% {
+    transform: translateX(-50px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
