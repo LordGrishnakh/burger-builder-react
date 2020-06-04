@@ -1,15 +1,17 @@
-import React from 'react';
-import {productsShop} from '../data';
-import MainShopCard from '../ProductList/MainShopCard/MainShopCard';
+import React from "react";
+import { productsShop } from "../data";
+import SelectedProductStyling from "./SelectedProduct.module.css";
 
-const SelectedProduct = (props) => {
-  console.log('WORKING!')
+const SelectedProduct = ({ selectedBurger }) => {
+  const burger = productsShop[selectedBurger];
+  console.log(burger);
   return (
-    <div>
-      {/* {productsShop[props.selectedProduct]} */}
-      <MainShopCard />
+    <div className={SelectedProductStyling.CardContainer}>
+      <h1>{burger.title}</h1>
+      <img src={burger.img} alt={burger.title} />
+      <p>{burger.info}</p>
     </div>
-  )
-}
+  );
+};
 
-export default SelectedProduct
+export default SelectedProduct;

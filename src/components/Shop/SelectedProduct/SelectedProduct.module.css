@@ -1,0 +1,11 @@
+.CardContainer {
+  background-color: black;
+  color: white;
+  position: sticky;
+  z-index: 2;
+  display: flex;
+  top: 0;
+  right: 0;
+  height: 300px;
+  border: 10px solid red;
+}
