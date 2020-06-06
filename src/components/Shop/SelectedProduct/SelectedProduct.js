@@ -9,7 +9,14 @@ const SelectedProduct = ({ selectedBurger }) => {
     <div className={SelectedProductStyling.CardContainer}>
       <h1>{burger.title}</h1>
       <img src={burger.img} alt={burger.title} />
-      <p>{burger.info}</p>
+      <div className={SelectedProductStyling.CardContent}>
+        <p>{burger.info}</p>
+        <span>{burger.price} &#8381;</span>
+        <div className={SelectedProductStyling.ActionButtons}>
+          <button>Take your GreatBurger</button>
+          <button>Add to Cart</button>
+        </div>
+      </div>
     </div>
   );
 };

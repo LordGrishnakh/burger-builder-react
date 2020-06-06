@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 import Product from "./Product/Product";
-import Modal from "../../UI/Modal/Modal";
-import Button from "../../UI/Button/Button";
-import OrderSummary from "../../Burger/OrderSummary/OrderSummary";
 import { productsShop } from "./../data";
 import ProductListStyles from "./ProductList.module.css";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
-import SelectedProduct from "../SelectedProduct/SelectedProduct";
 
 const ProductList = (props) => {
-  const [products, setProducts] = useState(productsShop);
-  const [isPurchasing, setIsPurchasing] = useState(false);
-
-  
+  const [products] = useState(productsShop);
 
   return (
     <div className={ProductListStyles.Container}>
@@ -24,6 +17,8 @@ const ProductList = (props) => {
             title={product.title}
             imgURL={product.img}
             price={product.price}
+            info={product.info}
+            ingredients={product.ingredients}
             click={props.productSelect.bind(this, product.id)}
           />
         );

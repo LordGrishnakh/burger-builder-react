@@ -12,7 +12,6 @@ const Shop = (props) => {
     <div className={ShopStyling.Shop}>
       <SelectedProduct selectedBurger={burgerId} />
       <ProductList productSelect={onProductSelect} />
-      <button onClick={()=>console.log(burgerId)}>log id</button>
     </div>
   );
 };

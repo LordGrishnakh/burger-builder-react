@@ -4,7 +4,7 @@ import HistoryStyling from './History.module.css'
 export const History = () => {
   return (
     <div className={HistoryStyling.Container}>
-      <img src="img/History.jpg" alt="adsf" />
+      <img src="img/History.webp" alt="adsf" />
       <div className={HistoryStyling.HistoryCard}>
         <h1>SINCE 1991</h1>
         <p>

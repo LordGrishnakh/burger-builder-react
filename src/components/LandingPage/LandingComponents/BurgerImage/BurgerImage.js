@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export const BurgerImage = () => {
   const background = {
-    backgroundImage: "url('img/burgerMain.png')"
+    backgroundImage: "url('img/burgerMain.webp')"
   }
 
   return (

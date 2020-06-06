@@ -4,9 +4,9 @@ import ShopSampleStyling from "./ShopSample.module.css";
 import ShopSampleCard from "./ShopSampleCard/ShopSampleCard";
 
 export const ShopSample = () => {
-  const image1 = { backgroundImage: "url('img/shopBurger_1.jpeg')" };
-  const image2 = { backgroundImage: "url('img/shopBurger_2.jpeg')" };
-  const image3 = { backgroundImage: "url('img/shopBurger_3.jpeg')" };
+  const image1 = { backgroundImage: "url('img/shopBurger_1.webp')" };
+  const image2 = { backgroundImage: "url('img/shopBurger_2.webp')" };
+  const image3 = { backgroundImage: "url('img/shopBurger_3.webp')" };
 
   return (
     <div className={ShopSampleStyling.Box}>

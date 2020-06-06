@@ -4,6 +4,8 @@ import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 import { connect } from 'react-redux';
 
+import LayoutStyling from './LayoutStyling.module.css'
+
 const Layout = props => {
   const [sideDrawerVisible, setSideDrawer] = useState(false);
 

@@ -12,7 +12,7 @@ export const Customers = () => {
     <div className={CustomersStyling.Container}>
       <div className={CustomersStyling.CustomerCard} onMouseEnter={()=>setIsHovered(true)} onMouseLeave={()=>setIsHovered(false)}>
         {isHovered ? <React.Fragment>
-                      <img src="img/person-1.jpg" alt="1" />
+                      <img src="img/person-1.webp" alt="1" />
                       <p>Aliquam erat volutpat. Nam nunc velit, dapibus nec diam lacinia, pharetra tempus turpis. Fusce tellus velit, bibendum sed mi vel, iaculis rhoncus urna. Praesent efficitur ante id leo lobortis imperdiet</p>
                      </React.Fragment>
         : <React.Fragment>
@@ -22,7 +22,7 @@ export const Customers = () => {
       </div>
       <div className={CustomersStyling.CustomerCard} onMouseEnter={()=>setIsHovered2(true)} onMouseLeave={()=>setIsHovered2(false)}>
         {isHovered2 ?  <React.Fragment>
-                        <img src="img/Steve.jpg" alt="1" />
+                        <img src="img/Steve.webp" alt="1" />
                         <p> ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis erat quis eleifend bibendum. Sed massa mi, varius in tristique ut, rhoncus quis ante.</p>
                       </React.Fragment>
                    :  <React.Fragment>
@@ -32,7 +32,7 @@ export const Customers = () => {
       </div>
       <div className={CustomersStyling.CustomerCard} onMouseEnter={()=>setIsHovered3(true)} onMouseLeave={()=>setIsHovered3(false)}>
         {isHovered3 ? <React.Fragment>
-                        <img src="img/person-2.jpg" alt="1" />
+                        <img src="img/person-2.webp" alt="1" />
                         <p>Donec consequat volutpat odio vel condimentum. Ut condimentum lobortis tortor, sit amet condimentum nibh vestibulum vel. Integer interdum at leo </p>
                       </React.Fragment>
                     : <React.Fragment>

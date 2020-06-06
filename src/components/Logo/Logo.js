@@ -1,5 +1,5 @@
 import React from 'react';
-import burgerLogo from '../../assets/images/burgerLogo.jpg';
+import burgerLogo from '../../assets/images/burgerLogo.webp';
 import LogoStyling from './Logo.module.css';
 
 const logo = ( props ) => (

@@ -4,8 +4,49 @@
   position: sticky;
   z-index: 2;
   display: flex;
-  top: 0;
+  top: 56px;
   right: 0;
-  height: 300px;
-  border: 10px solid red;
+  height: 20rem;
+  border: 8px solid #ac3f21;
+}
+.CardContainer h1 {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  padding: 1rem;
+}
+.CardContainer img {
+  border: 5px solid #ac3f21;
+  border-radius: 50%;
+}
+.CardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.CardContent p {
+  font-size: 1.3rem;
+}
+.CardContent span {
+  font-size: 2rem;
+  padding: 1rem;
+  color: #ac3f21;
+}
+.ActionButtons button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #ac3f21;
+  color: white;
+  font-size: 1.5rem;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.ActionButtons button:first-of-type {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.ActionButtons button:focus {
+  outline: none;
 }

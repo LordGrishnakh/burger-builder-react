@@ -1,8 +1,11 @@
 .Container {
-  /* margin: 1rem 1rem; */
   display: grid;
+  text-align: center;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2rem;
+  grid-template-rows: repeat(5, 500px);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 20px;
 }
 
 @media (max-width: 500px) {
