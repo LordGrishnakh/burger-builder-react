@@ -5,11 +5,13 @@ import * as actions from '../../../store/actions/index';
 import { Redirect } from 'react-router-dom';
 
 const Logout = props => {
-  const {onLogout} = props;
+  const {onLogout, onLogoutGoogle} = props;
 
   useEffect(() => {
     onLogout();
-  }, [onLogout]);
+    onLogoutGoogle();
+    window.gapi.auth2.getAuthInstance().signOut()
+  }, [onLogout, onLogoutGoogle]);
 
   return(
     <Redirect to="/" />
@@ -18,7 +20,8 @@ const Logout = props => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogout: () => dispatch(actions.logout())
+    onLogout: () => dispatch(actions.logout()),
+    onLogoutGoogle: () => dispatch(actions.signOut())
   }
 }
 

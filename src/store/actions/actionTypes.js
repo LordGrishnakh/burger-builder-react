@@ -14,4 +14,7 @@ export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const PRODUCT_SELECT = "PRODUCT_SELECT";
 
+export const SIGN_IN_GOOGLE = "SIGN_IN_GOOGLE"
+export const SIGN_OUT_GOOGLE = "SIGN_OUT_GOOGLE"
+
 export const SET_AUTH_REDIRECT_PATH = "SET_AUTH_REDIRECT_PATH";

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.SignIn {
+  font-family: 'Roboto', sans-serif;  display: flex;
+  margin: 2rem auto 1rem auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 0;
+  background: white;
+  padding: 0 8px;
+}
+.SignIn img {
+  padding-right: 18px;
+}
+
+.SignIn:focus {
+  outline: none;
+}

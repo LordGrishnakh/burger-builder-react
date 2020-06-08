@@ -1,95 +1,128 @@
-import * as actionTypes from './actionTypes';
-import Axios from 'axios';
+import * as actionTypes from "./actionTypes";
+import Axios from "axios";
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START
-  }
+    type: actionTypes.AUTH_START,
+  };
 };
 
 export const authSuccess = (token, userId) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
     idToken: token,
-    userId: userId
-  }
+    userId: userId,
+  };
+};
+
+export const signIn = (userId, token) => {
+  const expirationDate = new Date(
+    new Date().getTime() + 36000 * 1000
+  );
+  localStorage.setItem("token", userId);
+  localStorage.setItem("expirationDate", expirationDate);
+  localStorage.setItem("userId", userId);
+  return {
+    type: actionTypes.SIGN_IN_GOOGLE,
+    userId: userId,
+    token: token
+  };
+};
+
+export const signOut = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("userId");
+  return {
+    type: actionTypes.SIGN_OUT_GOOGLE,
+  };
 };
 
 export const authFail = (error) => {
   return {
     type: actionTypes.AUTH_FAIL,
-    error: error
-  }
+    error: error,
+  };
 };
 
 export const auth = (email, password, isSignup) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(authStart());
     const authData = {
       email: email,
       password: password,
-      returnSecureToken: true
+      returnSecureToken: true,
     };
-    let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA2mHC4xtS_wvajtGDdhBeFtK0HiW93Ey4';
+    let url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA2mHC4xtS_wvajtGDdhBeFtK0HiW93Ey4";
     if (!isSignup) {
-      url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA2mHC4xtS_wvajtGDdhBeFtK0HiW93Ey4';
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA2mHC4xtS_wvajtGDdhBeFtK0HiW93Ey4";
     }
     Axios.post(url, authData)
-      .then(response => {
-        const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+      .then((response) => {
+        const expirationDate = new Date(
+          new Date().getTime() + response.data.expiresIn * 1000
+        );
 
-        localStorage.setItem('token', response.data.idToken);
-        localStorage.setItem('expirationDate', expirationDate);
-        localStorage.setItem('userId', response.data.localId);
+        localStorage.setItem("token", response.data.idToken);
+        localStorage.setItem("expirationDate", expirationDate);
+        localStorage.setItem("userId", response.data.localId);
 
         dispatch(authSuccess(response.data.idToken, response.data.localId));
-        dispatch(checkAuthTimeout(response.data.expiresIn))
+        dispatch(checkAuthTimeout(response.data.expiresIn));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(authFail(err.response.data.error));
-      })
-  }
+      });
+  };
 };
 
 export const checkAuthTimeout = (expirationDate) => {
-  return dispatch => {
+  return (dispatch) => {
     setTimeout(() => {
-      dispatch(logout())
+      dispatch(logout());
     }, expirationDate * 1000);
-  }
+  };
 };
 
 export const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('expirationDate');
-  localStorage.removeItem('userId');
+  localStorage.removeItem("token");
+  localStorage.removeItem("expirationDate");
+  localStorage.removeItem("userId");
   return {
-    type: actionTypes.AUTH_LOGOUT
-  }
+    type: actionTypes.AUTH_LOGOUT,
+  };
 };
 
 export const setAuthRedirectPath = (path) => {
   return {
     type: actionTypes.SET_AUTH_REDIRECT_PATH,
-    path: path
-  }
+    path: path,
+  };
 };
 
-
 export const authCheckState = () => {
-  return dispatch => {
-    const token = localStorage.getItem('token');
-    if(!token) {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
       dispatch(logout());
+      dispatch(signOut());
     } else {
-      const expirationDate = new Date(localStorage.getItem('expirationDate'));
+      const expirationDate = new Date(localStorage.getItem("expirationDate"));
       if (expirationDate <= new Date()) {
         dispatch(logout());
+        // dispatch(signOut());
       } else {
-        const userId = localStorage.getItem('userId');
+        const userId = localStorage.getItem("userId");
         dispatch(authSuccess(token, userId));
-        dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000));
+        dispatch(signIn(userId));
+        dispatch(
+          checkAuthTimeout(
+            (expirationDate.getTime() - new Date().getTime()) / 1000
+          )
+        );
       }
     }
-  }
-}
+  };
+};

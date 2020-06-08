@@ -12,6 +12,8 @@ export {
 
 export {
   auth,
+  signIn,
+  signOut,
   logout,
   setAuthRedirectPath,
   authCheckState
