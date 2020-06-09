@@ -10,7 +10,6 @@ const Logout = props => {
   useEffect(() => {
     onLogout();
     onLogoutGoogle();
-    window.gapi.auth2.getAuthInstance().signOut()
   }, [onLogout, onLogoutGoogle]);
 
   return(

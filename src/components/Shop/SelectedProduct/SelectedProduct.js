@@ -6,21 +6,24 @@ import * as actions from "../../../store/actions";
 
 const SelectedProduct = (props) => {
   console.log(props.token);
+  const burger = productsShop[props.selectedBurger];
   const addToCartHandler = () => {
     const ingredients = {
-      salad: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
+      salad: burger.ingredients.salad,
+      bacon: burger.ingredients.bacon,
+      cheese: burger.ingredients.cheese,
+      meat: burger.ingredients.meat,
     };
     const order = {
       ingredients: ingredients,
+      orderData: "Ordered via shop",
+      price: burger.price,
       userId: props.userId,
+      orderId: new Date().getTime().toString(),
     };
     props.onOrderBurger(order, props.token);
   };
 
-  const burger = productsShop[props.selectedBurger];
   console.log(burger);
   return (
     <div className={SelectedProductStyling.CardContainer}>

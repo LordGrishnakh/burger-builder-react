@@ -9,7 +9,7 @@ import Shop from './components/Shop/Shop';
 import LandingPage from './components/LandingPage/LandingPage';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
-import GoogleOAth2test from './GoogleOAth2_test';
+// import GoogleOAth2test from './GoogleOAth2_test';
 
 
 
@@ -50,7 +50,7 @@ const App = props => {
   }
   return (
     <div className={classes.App}>
-      <GoogleOAth2test />
+      {/* <GoogleOAth2test /> */}
       <Layout>
         <Suspense fallback={<p>Loading...</p>}>
           {routes}

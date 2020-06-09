@@ -4,6 +4,7 @@ import OrderStyling from "./Order.module.css";
 
 const Order = (props) => {
   const [isBarShown, setIsBarShown] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   let [barValue, setBarValue] = useState(0);
 
   const ingredients = [];
@@ -16,6 +17,7 @@ const Order = (props) => {
 
   const startEating = () => {
     setIsBarShown(true);
+    setDisabled(true);
     setInterval(() => {
       setBarValue(barValue++);
     }, 100);
@@ -46,8 +48,8 @@ const Order = (props) => {
           <p>
             Price: {props.price} <strong>&#8381;</strong>
           </p>
-          <button onClick={startEating}>
-            <i class="fas fa-hamburger fa-4x"></i>
+          <button onClick={startEating} disabled={disabled}>
+            <i className="fas fa-hamburger fa-4x"></i>
           </button>
           {isBarShown ? (
             <progress

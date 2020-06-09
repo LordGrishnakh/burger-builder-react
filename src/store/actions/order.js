@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-order';
+import Axios from 'axios';
 
 export const purchaseBurgerSuccess = (id, orderData) => {
   return {
@@ -22,10 +23,11 @@ export const purchaseBurgerStart = () => {
   }
 }
 
+
 export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart());
-    axios.post("orders.json?auth=" + token, orderData)
+    Axios.post("https://burger-app-af019.firebaseio.com/orders.json", orderData)
       .then(response => {
         dispatch(purchaseBurgerSuccess(response.data, orderData));
       })
@@ -34,6 +36,18 @@ export const purchaseBurger = (orderData, token) => {
       });
   }
 };
+// export const purchaseBurger = (orderData, token) => {
+//   return dispatch => {
+//     dispatch(purchaseBurgerStart());
+//     Axios.post("https://burger-app-af019.firebaseio.com/orders.json?auth=" + token, orderData)
+//       .then(response => {
+//         dispatch(purchaseBurgerSuccess(response.data, orderData));
+//       })
+//       .catch(error => {
+//         dispatch(purchaseBurgerFail(error));
+//       });
+//   }
+// };
 
 export const purchaseInit = () => {
   return {
@@ -64,8 +78,9 @@ export const fetchOrdersFail = (error) => {
 export const fetchOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
-    const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-    axios.get('/orders.json' + queryParams)
+    const queryParams = '?orderBy="userId"&equalTo="' + userId + '"';
+    console.log(queryParams)
+    axios.get('https://burger-app-af019.firebaseio.com/orders.json' + queryParams)
       .then(res => {
         const fetchedOrders = [];
         for (let key in res.data) {
@@ -78,6 +93,41 @@ export const fetchOrders = (token, userId) => {
       })
       .catch(err=> {
         dispatch(fetchOrdersFail(err));
+      })
+  }
+}
+
+export const deleteOrderStart = () => {
+  return {
+    type: actionTypes.DELETE_ORDER_START
+  }
+}
+
+export const deleteOrderSuccess =(id) => {
+  return {
+    type: actionTypes.DELETE_ORDER_SUCCESS,
+    orderId: id
+  }
+}
+
+export const deleteOrderFailed = (err) => {
+  return {
+    type: actionTypes.DELETE_ORDER_FAILED,
+    error: err
+  }
+}
+
+export const deleteOrder = (id) => {
+  return dispatch => {
+    dispatch(deleteOrderStart);
+    const queryParams = '?orderBy="userId"&equalTo="' + id + '"';
+    Axios.delete("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
+      .then(res => {
+        console.log(res)
+        dispatch(deleteOrderSuccess(id))
+      })
+      .catch(err => {
+        dispatch(deleteOrderFailed(err))
       })
   }
 }
