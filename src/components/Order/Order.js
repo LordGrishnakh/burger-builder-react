@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { deleteOrder } from '../../store/actions'
 
 import OrderStyling from "./Order.module.css";
+import { connect } from "react-redux";
 
 const Order = (props) => {
   const [isBarShown, setIsBarShown] = useState(false);
@@ -17,6 +19,7 @@ const Order = (props) => {
 
   const startEating = () => {
     setIsBarShown(true);
+    props.onOrderDelete(props.orderId)
     setDisabled(true);
     setInterval(() => {
       setBarValue(barValue++);
@@ -68,4 +71,10 @@ const Order = (props) => {
   );
 };
 
-export default Order;
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderDelete: (orderId) => dispatch(deleteOrder(orderId))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Order);

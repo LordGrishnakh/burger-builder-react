@@ -19,7 +19,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, .5);
 }
 
 .Title {
@@ -41,4 +41,37 @@
 }
 .ShopLink:hover {
   background: lightgray;
+}
+
+@media (max-width: 380px) {
+  .Sample {
+    height: 30vh;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ShopLink {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    border: 3px solid red;
+  }
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media screen and (max-width: 767px) {
+  .Sample {
+    width: 100%;
+    margin-left: 0rem;
+    margin-top: 2rem;
+
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* tablets/desktops and up  */
+@media (min-width: 992px) and (max-width: 1199px) {
+
 }

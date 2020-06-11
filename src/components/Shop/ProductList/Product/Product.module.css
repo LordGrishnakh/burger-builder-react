@@ -100,6 +100,9 @@
 .ProductInfo button {
   outline: none;
 }
+.OrderNow {
+  display: none;
+}
 
 
 /* .OrderButton:hover,
@@ -111,6 +114,12 @@
 
 @media (max-width: 500px) {
   .CardContainer {
-    margin: 5rem auto;
+    margin: 1rem auto;
+  }
+  .OrderNow {
+    display: inline-block;
+  }
+  .ShowMore {
+    display: none;
   }
 }

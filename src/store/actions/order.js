@@ -1,40 +1,39 @@
-import * as actionTypes from './actionTypes';
-import axios from '../../axios-order';
-import Axios from 'axios';
+import * as actionTypes from "./actionTypes";
+import axios from "../../axios-order";
+import Axios from "axios";
 
 export const purchaseBurgerSuccess = (id, orderData) => {
   return {
     type: actionTypes.PURCHASE_BURGER_SUCCESS,
     orderId: id,
-    orderData: orderData 
-  }
+    orderData: orderData,
+  };
 };
 
 export const purchaseBurgerFail = (error) => {
   return {
     type: actionTypes.PURCHASE_BURGER_FAIL,
-    error: error
-  }
+    error: error,
+  };
 };
 
 export const purchaseBurgerStart = () => {
   return {
-    type: actionTypes.PURCHASE_BURGER_START
-  }
-}
-
+    type: actionTypes.PURCHASE_BURGER_START,
+  };
+};
 
 export const purchaseBurger = (orderData, token) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(purchaseBurgerStart());
     Axios.post("https://burger-app-af019.firebaseio.com/orders.json", orderData)
-      .then(response => {
+      .then((response) => {
         dispatch(purchaseBurgerSuccess(response.data, orderData));
       })
-      .catch(error => {
+      .catch((error) => {
         dispatch(purchaseBurgerFail(error));
       });
-  }
+  };
 };
 // export const purchaseBurger = (orderData, token) => {
 //   return dispatch => {
@@ -51,83 +50,98 @@ export const purchaseBurger = (orderData, token) => {
 
 export const purchaseInit = () => {
   return {
-    type: actionTypes.PURCHASE_INIT
-  }
+    type: actionTypes.PURCHASE_INIT,
+  };
 };
 
 export const fetchOrdersStart = () => {
   return {
-    type: actionTypes.FETCH_ORDERS_START
-  }
+    type: actionTypes.FETCH_ORDERS_START,
+  };
 };
 
 export const fetchOrdersSuccess = (orders) => {
   return {
     type: actionTypes.FETCH_ORDERS_SUCCESS,
-    orders: orders
-  }
+    orders: orders,
+  };
 };
 
 export const fetchOrdersFail = (error) => {
   return {
     type: actionTypes.FETCH_ORDERS_FAIL,
-    error: error
-  }
+    error: error,
+  };
 };
 
 export const fetchOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
     const queryParams = '?orderBy="userId"&equalTo="' + userId + '"';
-    console.log(queryParams)
-    axios.get('https://burger-app-af019.firebaseio.com/orders.json' + queryParams)
-      .then(res => {
+    console.log(queryParams);
+    axios
+      .get("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
+      .then((res) => {
         const fetchedOrders = [];
         for (let key in res.data) {
           fetchedOrders.push({
             ...res.data[key],
-            id: key
+            id: key,
           });
         }
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
-      .catch(err=> {
+      .catch((err) => {
         dispatch(fetchOrdersFail(err));
-      })
-  }
-}
+      });
+  };
+};
 
 export const deleteOrderStart = () => {
   return {
-    type: actionTypes.DELETE_ORDER_START
-  }
-}
+    type: actionTypes.DELETE_ORDER_START,
+  };
+};
 
-export const deleteOrderSuccess =(id) => {
+export const deleteOrderSuccess = (id) => {
   return {
     type: actionTypes.DELETE_ORDER_SUCCESS,
-    orderId: id
-  }
-}
+    orderId: id,
+  };
+};
 
 export const deleteOrderFailed = (err) => {
   return {
     type: actionTypes.DELETE_ORDER_FAILED,
-    error: err
-  }
-}
+    error: err,
+  };
+};
 
 export const deleteOrder = (id) => {
-  return dispatch => {
-    dispatch(deleteOrderStart);
-    const queryParams = '?orderBy="userId"&equalTo="' + id + '"';
-    Axios.delete("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
+  return (dispatch) => {
+    let orderRecordName = "";
+    dispatch(deleteOrderStart());
+    const queryParams = '?orderBy="orderId"&equalTo="' + id + '"';
+    Axios.get("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
+      .then(orderRecord => {
+        console.log(Object.keys(orderRecord.data))
+        orderRecordName = Object.keys(orderRecord.data)
+        // deleteOrderSuccess()
+      })
       .then(res => {
-        console.log(res)
-        dispatch(deleteOrderSuccess(id))
+        Axios.delete(
+          `https://burger-app-af019.firebaseio.com/orders/${orderRecordName}.json`// + queryParams
+        )
+          .then((data) => {
+            console.log(data);
+            dispatch(deleteOrderSuccess(id));
+          })
+          .catch((err) => {
+            dispatch(deleteOrderFailed(err));
+          });
       })
-      .catch(err => {
-        dispatch(deleteOrderFailed(err))
-      })
-  }
-}
+      .catch((err) => {
+        dispatch(deleteOrderFailed(err));
+      });
+  };
+};

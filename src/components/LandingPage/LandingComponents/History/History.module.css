@@ -25,13 +25,9 @@
   font-size: 1.4rem;
 }
 
-@media (max-width: 1280px) {
-  .HistoryCard h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .HistoryCard p {
-    font-size: 1.25rem;
+@media (max-width: 500px) {
+  .HistoryCard p.ShowMore {
+    display: none;
   }
 }
 
@@ -55,5 +51,14 @@
   }
   .HistoryCard p {
     font-size: 1.1rem;
+  }
+}
+@media (max-width: 1280px) {
+  .HistoryCard h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .HistoryCard p {
+    font-size: 1.25rem;
   }
 }

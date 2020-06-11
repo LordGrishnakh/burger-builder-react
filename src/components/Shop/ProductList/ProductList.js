@@ -18,7 +18,9 @@ const ProductList = (props) => {
             imgURL={product.img}
             price={product.price}
             info={product.info}
+            userId={props.userId}
             ingredients={product.ingredients}
+            orderNow={props.onOrderBurger}
             click={props.productSelect.bind(this, product.id)}
           />
         );

@@ -58,7 +58,7 @@
 .BBLink {
   background: white;
   color: red;
-  font-size: 3rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
@@ -125,13 +125,16 @@
   .Title {
     font-size: 2rem;
   }
+  .Overlay {
+    height: 100%;
+  }
   
   .Timeline {
     font-size: 4rem;
     margin-bottom: 2rem;
   }
   .BBLink {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     padding: 1rem 2rem;
   }
 }

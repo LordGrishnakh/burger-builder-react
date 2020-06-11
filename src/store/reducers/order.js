@@ -54,18 +54,18 @@ const reducer = (state=initialState, action) => {
     case actionTypes.DELETE_ORDER_START:
       return {
         ...state,
-        loading: true
+        // loading: true
       }
     case actionTypes.DELETE_ORDER_SUCCESS:
       return {
         ...state,
-        loading: false,
+        // loading: false,
         
       }
     case actionTypes.DELETE_ORDER_FAILED:
       return {
         ...state,
-        loading: false,
+        // loading: false,
         error: action.error
       }
   

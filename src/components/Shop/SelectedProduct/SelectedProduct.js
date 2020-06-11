@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import Spinner from "../../UI/Spinner/Spinner";
 import { productsShop } from "../data";
 import SelectedProductStyling from "./SelectedProduct.module.css";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
+import Modal from "../../UI/Modal/Modal";
+import ContactData from "../../Order/ContactData/ContactData";
 
 const SelectedProduct = (props) => {
+  const [purchasing, setPurchasing] = useState(false);
+
   console.log(props.token);
   const burger = productsShop[props.selectedBurger];
   const addToCartHandler = () => {
@@ -14,6 +19,10 @@ const SelectedProduct = (props) => {
       cheese: burger.ingredients.cheese,
       meat: burger.ingredients.meat,
     };
+    if (!props.userId) {
+      console.log("you must authenticate first");
+      return;
+    }
     const order = {
       ingredients: ingredients,
       orderData: "Ordered via shop",
@@ -23,19 +32,38 @@ const SelectedProduct = (props) => {
     };
     props.onOrderBurger(order, props.token);
   };
+  const hideModalHandler = () => {
+    setPurchasing(false);
+  };
+
+  let loadingContent = (
+    <div className={SelectedProductStyling.ActionButtons}>
+      <button onClick={() => setPurchasing(true)}>Take your GreatBurger</button>
+      <button onClick={addToCartHandler} disabled={!props.userId}>
+        Add to Cart
+      </button>
+    </div>
+  );
+
+  if (props.loading) {
+    loadingContent = <Spinner />;
+  }
 
   console.log(burger);
   return (
     <div className={SelectedProductStyling.CardContainer}>
+      <Modal show={purchasing} hideModal={hideModalHandler}>
+        <div>
+          {/* <h1>Fill this form and this delicious burger is yours</h1> */}
+          <ContactData igns={burger.ingredients} price={burger.price} />
+        </div>
+      </Modal>
       <h1>{burger.title}</h1>
       <img src={burger.img} alt={burger.title} />
       <div className={SelectedProductStyling.CardContent}>
         <p>{burger.info}</p>
         <span>{burger.price} &#8381;</span>
-        <div className={SelectedProductStyling.ActionButtons}>
-          <button>Take your GreatBurger</button>
-          <button onClick={addToCartHandler}>Add to Cart</button>
-        </div>
+        {loadingContent}
       </div>
     </div>
   );
@@ -45,6 +73,7 @@ const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
     userId: state.auth.userId,
+    loading: state.order.loading,
   };
 };
 

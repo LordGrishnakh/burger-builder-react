@@ -10,7 +10,7 @@ export const History = () => {
         <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis erat quis eleifend bibendum. Sed massa mi, varius in tristique ut, rhoncus quis ante. Aliquam erat volutpat. Nam nunc velit, dapibus nec diam lacinia, pharetra tempus turpis. Fusce tellus velit, bibendum sed mi vel, iaculis rhoncus urna. Praesent efficitur ante id leo lobortis imperdiet. Donec consequat volutpat odio vel condimentum. Ut condimentum lobortis tortor, sit amet condimentum nibh vestibulum vel. Integer interdum at leo at placerat. Nunc at nisl tortor.
         </p>
-        <p>
+        <p className={HistoryStyling.ShowMore}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis erat quis eleifend bibendum. Sed massa mi, varius in tristique ut, rhoncus quis ante. Aliquam erat volutpat. Nam nunc velit, dapibus nec diam lacinia, pharetra tempus turpis. Fusce tellus velit, bibendum sed mi vel, iaculis rhoncus urna. Praesent efficitur ante id leo lobortis imperdiet. Donec consequat volutpat odio vel condimentum. Ut condimentum lobortis tortor, sit amet condimentum nibh vestibulum vel. Integer interdum at leo at placerat. Nunc at nisl tortor.
         </p>
       </div>

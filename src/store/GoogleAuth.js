@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import GoogleButtonStyling from './GoogleAuthStyling.module.css';
 import { signIn, signOut } from "./actions";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
@@ -42,17 +43,17 @@ const GoogleOAth2_test = (props) => {
       })
       .catch(function (error) {
         // Handle Errors here.
-        var errorMessage = error.message;
-        var errorCode = error.code;
+        // var errorMessage = error.message;
+        // var errorCode = error.code;
         // The email of the user's account used.
-        var email = error.email;
+        // var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
+        // var credential = error.credential;
         // ...
       });
   };
   return (
-    <button onClick={oathGoogle}>
+    <button className={GoogleButtonStyling.SignIn} onClick={oathGoogle}>
       <img src="img/googleBtn.svg" alt="googleBtn" />
       <p>Sign in with Google</p>
     </button>

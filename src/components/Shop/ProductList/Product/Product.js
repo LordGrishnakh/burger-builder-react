@@ -8,7 +8,14 @@ const Product = (props) => {
 
   const showShortDescription = (info) => {
     return info.slice(0, 49) + "...";
-  }
+  };
+
+  const createOrderData = () => {
+    return {
+      ...props.ingredients,
+      userId: props.userId,
+    };
+  };
 
   return (
     <div className={ProductStyles.CardContainer} onClick={props.click}>
@@ -26,14 +33,23 @@ const Product = (props) => {
       </div>
       <img alt={props.title} src={props.imgURL} />
       <div className={ProductStyles.ProductInfo}>
-        <div className={ProductStyles.ProductTitle}>
-          {props.title}
-        </div>
+        <div className={ProductStyles.ProductTitle}>{props.title}</div>
         <p className={ProductStyles.ProductDesc}>
           {showShortDescription(props.info)}
         </p>
         <p className={ProductStyles.ProductPrice}>{props.price}&#8381;</p>
-        <button>Show More</button>
+        <button
+          className={ProductStyles.ShowMore}
+          onClick={() => console.log("show moer")}
+        >
+          Show More
+        </button>
+        <button
+          className={ProductStyles.OrderNow}
+          onClick={() => props.orderNow(createOrderData(), "123")}
+        >
+          Order This
+        </button>
       </div>
     </div>
   );
