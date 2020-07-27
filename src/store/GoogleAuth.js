@@ -10,7 +10,6 @@ import "firebase/analytics";
 
 // Add the Firebase products that you want to use
 import "firebase/auth";
-import "firebase/firestore";
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA2mHC4xtS_wvajtGDdhBeFtK0HiW93Ey4",
@@ -37,7 +36,6 @@ const GoogleOAth2_test = (props) => {
         const token = result.credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user, token);
         props.signIn(user.uid, token);
         // ...
       })

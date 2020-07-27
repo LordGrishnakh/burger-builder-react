@@ -9,7 +9,6 @@ import Shop from './components/Shop/Shop';
 import LandingPage from './components/LandingPage/LandingPage';
 import {connect} from 'react-redux';
 import * as actions from './store/actions/index';
-// import GoogleOAth2test from './GoogleOAth2_test';
 
 
 
@@ -18,11 +17,9 @@ const auth = React.lazy(() => import('./containers/Auth/Auth'));
 
 const App = props => {
   const { onTryAutoSignup } = props;
-  // const { onTryAutoSignup } = props
 
   useEffect(() => {
     onTryAutoSignup();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onTryAutoSignup])
 
   let routes = (
@@ -50,7 +47,6 @@ const App = props => {
   }
   return (
     <div className={classes.App}>
-      {/* <GoogleOAth2test /> */}
       <Layout>
         <Suspense fallback={<p>Loading...</p>}>
           {routes}

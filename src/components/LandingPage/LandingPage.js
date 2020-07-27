@@ -5,7 +5,6 @@ import BurgerImage from './LandingComponents/BurgerImage/BurgerImage';
 import ShopSample from './LandingComponents/ShopSample/ShopSample';
 import History from './LandingComponents/History/History';
 import Customers from './LandingComponents/Customers/Customers';
-// import Location from './LandingComponents/Location/Location';
 
 export const LandingPage = () => {
   return (

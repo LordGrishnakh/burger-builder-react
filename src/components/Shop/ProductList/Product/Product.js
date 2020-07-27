@@ -40,7 +40,6 @@ const Product = (props) => {
         <p className={ProductStyles.ProductPrice}>{props.price}&#8381;</p>
         <button
           className={ProductStyles.ShowMore}
-          onClick={() => console.log("show moer")}
         >
           Show More
         </button>

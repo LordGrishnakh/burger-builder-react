@@ -10,7 +10,6 @@ import ContactData from "../../Order/ContactData/ContactData";
 const SelectedProduct = (props) => {
   const [purchasing, setPurchasing] = useState(false);
 
-  console.log(props.token);
   const burger = productsShop[props.selectedBurger];
   const addToCartHandler = () => {
     const ingredients = {
@@ -20,7 +19,6 @@ const SelectedProduct = (props) => {
       meat: burger.ingredients.meat,
     };
     if (!props.userId) {
-      console.log("you must authenticate first");
       return;
     }
     const order = {
@@ -49,12 +47,10 @@ const SelectedProduct = (props) => {
     loadingContent = <Spinner />;
   }
 
-  console.log(burger);
   return (
     <div className={SelectedProductStyling.CardContainer}>
       <Modal show={purchasing} hideModal={hideModalHandler}>
         <div>
-          {/* <h1>Fill this form and this delicious burger is yours</h1> */}
           <ContactData igns={burger.ingredients} price={burger.price} />
         </div>
       </Modal>

@@ -78,7 +78,6 @@ export const fetchOrders = (token, userId) => {
   return (dispatch) => {
     dispatch(fetchOrdersStart());
     const queryParams = '?orderBy="userId"&equalTo="' + userId + '"';
-    console.log(queryParams);
     axios
       .get("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
       .then((res) => {
@@ -124,16 +123,13 @@ export const deleteOrder = (id) => {
     const queryParams = '?orderBy="orderId"&equalTo="' + id + '"';
     Axios.get("https://burger-app-af019.firebaseio.com/orders.json" + queryParams)
       .then(orderRecord => {
-        console.log(Object.keys(orderRecord.data))
         orderRecordName = Object.keys(orderRecord.data)
-        // deleteOrderSuccess()
       })
       .then(res => {
         Axios.delete(
           `https://burger-app-af019.firebaseio.com/orders/${orderRecordName}.json`// + queryParams
         )
           .then((data) => {
-            console.log(data);
             dispatch(deleteOrderSuccess(id));
           })
           .catch((err) => {
