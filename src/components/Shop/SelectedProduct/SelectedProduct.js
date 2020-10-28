@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Spinner from "../../UI/Spinner/Spinner";
 import { productsShop } from "../data";
 import SelectedProductStyling from "./SelectedProduct.module.css";
@@ -12,6 +12,13 @@ const SelectedProduct = (props) => {
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const textRef = useRef(null);
+
+  useEffect(() => {
+    if (props.purchased) {
+      setPurchasing(false);
+      console.log("purchased")
+    }
+  }, [props.purchased])
 
   const moveText = (e) => {
     setTop(e.clientY);
@@ -50,9 +57,13 @@ const SelectedProduct = (props) => {
       <button
         onClick={addToCartHandler}
         className={!props.userId ? SelectedProductStyling.Disabled : null}
-        onMouseEnter={() => (textRef.current.style.display = "block")}
-        onMouseMove={(e) => moveText(e)}
-        onMouseLeave={() => (textRef.current.style.display = "none")}
+        onMouseEnter={
+          !props.userId ? () => (textRef.current.style.display = "block") : null
+        }
+        onMouseMove={!props.userId ? (e) => moveText(e) : null}
+        onMouseLeave={
+          !props.userId ? () => (textRef.current.style.display = "none") : null
+        }
       >
         Add to Cart
       </button>
@@ -83,7 +94,11 @@ const SelectedProduct = (props) => {
         <span>{burger.price} &#8381;</span>
         {loadingContent}
       </div>
-      <div className={SelectedProductStyling.FloatingText} ref={textRef}>
+      <div
+        style={{ display: "none" }}
+        className={SelectedProductStyling.FloatingText}
+        ref={textRef}
+      >
         Login first to continue!
       </div>
     </div>
@@ -95,6 +110,7 @@ const mapStateToProps = (state) => {
     token: state.auth.token,
     userId: state.auth.userId,
     loading: state.order.loading,
+    purchased: state.order.purchased,
   };
 };
 

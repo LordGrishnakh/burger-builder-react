@@ -40,48 +40,6 @@ const ContactData = props => {
       valid: false,
       touched: false
     },
-    zipCode: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Your Zipcode'
-      },
-      value: '',
-      validation: {
-        required: true,
-        minLength: 5
-      },
-      valid: false,
-      touched: false
-    },
-    country: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'text',
-        placeholder: 'Your Country'
-      },
-      value: '',
-      validation: {
-        required: true,
-        minLength: 5
-      },
-      valid: false,
-      touched: false
-    },
-    email: {
-      elementType: 'input',
-      elementConfig: {
-        type: 'email',
-        placeholder: 'Your Email'
-      },
-      value: '',
-      validation: {
-        required: true,
-        minLength: 5
-      },
-      valid: false,
-      touched: false
-    },
     deliveryMethod: {
       elementType: 'select',
       elementConfig: {
