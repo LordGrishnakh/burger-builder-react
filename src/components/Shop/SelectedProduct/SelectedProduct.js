@@ -9,6 +9,7 @@ import ContactData from "../../Order/ContactData/ContactData";
 
 const SelectedProduct = (props) => {
   const [purchasing, setPurchasing] = useState(false);
+  const [chosenBurgerPhoto, setChosenBurgerPhoto] = useState("")
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const textRef = useRef(null);
@@ -51,9 +52,14 @@ const SelectedProduct = (props) => {
     setPurchasing(false);
   };
 
+  const orderHandler = () => {
+    setChosenBurgerPhoto(productsShop[props.selectedBurger - 1].img);
+    setPurchasing(true);
+  }
+
   let loadingContent = (
     <div className={SelectedProductStyling.ActionButtons}>
-      <button onClick={() => setPurchasing(true)}>Take your GreatBurger</button>
+      <button onClick={orderHandler}>Take your GreatBurger</button>
       <button
         onClick={addToCartHandler}
         className={!props.userId ? SelectedProductStyling.Disabled : null}
@@ -82,8 +88,8 @@ const SelectedProduct = (props) => {
 
   return (
     <div className={SelectedProductStyling.CardContainer}>
-      <Modal show={purchasing} hideModal={hideModalHandler}>
-        <div>
+      <Modal show={purchasing} hideModal={hideModalHandler} chosenBurgerPhoto={chosenBurgerPhoto} >
+        <div className={SelectedProductStyling.Form}>
           <ContactData igns={burger.ingredients} price={burger.price} />
         </div>
       </Modal>

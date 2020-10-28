@@ -1,7 +1,13 @@
 .ContactData {
-  margin: 20px auto;
+  margin: 0px auto;
+  background-color: #4D2A07;
+  padding: 2rem 1rem;
   width: 80%;
   text-align: center;
+  border: 3px solid black;
+}
+.ContactData h4 {
+  margin: 1rem 0 2rem 0;
 }
 .ContactData input {
   margin: 0.5rem 0;

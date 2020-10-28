@@ -75,6 +75,10 @@
   background-color: #4d2a07;
 }
 
+.Form {
+  margin: 3rem 0;
+}
+
 .FloatingText {
   position: fixed;
   font-size: 2rem;
