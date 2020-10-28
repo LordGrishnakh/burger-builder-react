@@ -4,13 +4,21 @@ import ShopStyling from "./ShopStyling.module.css";
 import SelectedProduct from "./SelectedProduct/SelectedProduct";
 
 const Shop = (props) => {
-  const [burgerId, setBurgerId] = useState(0);
+  const [burgerId, setBurgerId] = useState(null);
   const onProductSelect = (id) => {
-    setBurgerId(id - 1);
+    setBurgerId(id);
+  };
+  const onProductDeselect = () => {
+    setBurgerId(null);
   };
   return (
     <div className={ShopStyling.Shop}>
-      <SelectedProduct selectedBurger={burgerId} />
+      {burgerId && (
+        <SelectedProduct
+          selectedBurger={burgerId}
+          onProductDeselect={onProductDeselect}
+        />
+      )}
       <ProductList productSelect={onProductSelect} />
     </div>
   );

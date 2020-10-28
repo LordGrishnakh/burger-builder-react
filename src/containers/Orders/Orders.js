@@ -4,6 +4,8 @@ import axios from "../../axios-order";
 import withErrorHandler from "../../HOC/WithErrorHandler";
 import { connect } from "react-redux";
 
+import OrdersStyling from "./Orders.module.css";
+
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 
@@ -20,7 +22,14 @@ const Orders = (props) => {
       <Order key={idx} orderId={order.orderId} ingredients={order.ingredients} price={order.price} />
     ));
   }
-  return <div>{orders}</div>;
+  return (
+    <div>
+      <div className={OrdersStyling.WelcomeBox}>
+        <p>Your Delicious Great Burgers!</p>
+      </div>
+      {orders}
+    </div>
+  )
 };
 
 const mapStateToProps = (state) => {

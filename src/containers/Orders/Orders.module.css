@@ -1,0 +1,11 @@
+.WelcomeBox {
+  border: 3px solid #AC3F21;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.WelcomeBox p {
+  font-size: 2rem;
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Spinner from "../../UI/Spinner/Spinner";
 import { productsShop } from "../data";
 import SelectedProductStyling from "./SelectedProduct.module.css";
@@ -9,8 +9,18 @@ import ContactData from "../../Order/ContactData/ContactData";
 
 const SelectedProduct = (props) => {
   const [purchasing, setPurchasing] = useState(false);
+  const [top, setTop] = useState(0);
+  const [left, setLeft] = useState(0);
+  const textRef = useRef(null);
 
-  const burger = productsShop[props.selectedBurger];
+  const moveText = (e) => {
+    setTop(e.clientY);
+    setLeft(e.clientX);
+    textRef.current.style.top = top + 20 + "px";
+    textRef.current.style.left = left + "px";
+  };
+
+  const burger = productsShop[props.selectedBurger - 1];
   const addToCartHandler = () => {
     const ingredients = {
       salad: burger.ingredients.salad,
@@ -37,9 +47,21 @@ const SelectedProduct = (props) => {
   let loadingContent = (
     <div className={SelectedProductStyling.ActionButtons}>
       <button onClick={() => setPurchasing(true)}>Take your GreatBurger</button>
-      <button onClick={addToCartHandler} disabled={!props.userId}>
+      <button
+        onClick={addToCartHandler}
+        className={!props.userId ? SelectedProductStyling.Disabled : null}
+        onMouseEnter={() => (textRef.current.style.display = "block")}
+        onMouseMove={(e) => moveText(e)}
+        onMouseLeave={() => (textRef.current.style.display = "none")}
+      >
         Add to Cart
       </button>
+      <span
+        className={SelectedProductStyling.CancelBtn}
+        onClick={props.onProductDeselect}
+      >
+        X
+      </span>
     </div>
   );
 
@@ -60,6 +82,9 @@ const SelectedProduct = (props) => {
         <p>{burger.info}</p>
         <span>{burger.price} &#8381;</span>
         {loadingContent}
+      </div>
+      <div className={SelectedProductStyling.FloatingText} ref={textRef}>
+        Login first to continue!
       </div>
     </div>
   );
