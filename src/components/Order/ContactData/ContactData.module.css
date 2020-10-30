@@ -3,18 +3,18 @@
   background-color: #4D2A07;
   padding: 2rem 1rem;
   width: 80%;
-  text-align: center;
+  /* text-align: center; */
   border: 3px solid black;
 }
-.ContactData h4 {
+.ContactData h2 {
   margin: 1rem 0 2rem 0;
 }
 .ContactData input {
   margin: 0.5rem 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   display: block;
   width: 100%;
-  text-align: center;
+  /* text-align: center; */
 }
 
 @media (min-width: 600px) {

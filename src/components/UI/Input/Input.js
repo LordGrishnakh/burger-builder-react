@@ -1,7 +1,7 @@
-import React from 'react';
-import InputStyling from './Input.module.css';
+import React from "react";
+import InputStyling from "./Input.module.css";
 
-const input = ( props ) => {
+const input = (props) => {
   let inputElement = null;
   const inputStyles = [InputStyling.InputElement];
 
@@ -10,27 +10,38 @@ const input = ( props ) => {
   }
 
   switch (props.elementType) {
-    case 'input':
-      inputElement = <input 
-                        className={inputStyles.join(' ')}
-                        onChange={props.changed} 
-                        {...props.elementConfig}
-                        value={props.value} />
-      break;
-    case 'textarea':
-      inputElement = <textarea 
-                        className={inputStyles.join(' ')}
-                        onChange={props.changed} 
-                        {...props.elementConfig}
-                        value={props.value}/>
-      break;
-    case 'select':
+    case "input":
       inputElement = (
-        <select className={inputStyles.join(' ')}
-                onChange={props.changed}
-                value={props.value} >
-          
-          {props.elementConfig.options.map((option, idx)=>(
+        <input
+          className={inputStyles.join(" ")}
+          onChange={props.changed}
+          onFocus={(e) => e.target.removeAttribute("placeholder")}
+          onBlur={(e) => e.target.setAttribute("placeholder", props.label)}
+          id={props.label}
+          name={props.label}
+          {...props.elementConfig}
+          value={props.value}
+        />
+      );
+      break;
+    case "textarea":
+      inputElement = (
+        <textarea
+          className={inputStyles.join(" ")}
+          onChange={props.changed}
+          {...props.elementConfig}
+          value={props.value}
+        />
+      );
+      break;
+    case "select":
+      inputElement = (
+        <select
+          className={inputStyles.join(" ")}
+          onChange={props.changed}
+          value={props.value}
+        >
+          {props.elementConfig.options.map((option, idx) => (
             <option key={idx} value={option.value}>
               {option.displayValue}
             </option>
@@ -38,22 +49,33 @@ const input = ( props ) => {
         </select>
       );
       break;
-  
+
     default:
-      inputElement = <input 
-                        className={inputStyles.join(' ')}
-                        onChange={props.changed} 
-                        {...props.elementConfig}
-                        value={props.value} />
+      inputElement = (
+        <input
+          className={inputStyles.join(" ")}
+          onChange={props.changed}
+          {...props.elementConfig}
+          value={props.value}
+        />
+      );
       break;
   }
 
   return (
     <div className={InputStyling.Input}>
-      <label className={InputStyling.Label}>{props.label}</label>
-      { inputElement }
+      {inputElement}
+      <label
+        htmlFor={props.label}
+        style={
+          props.value ? { visibility: "visible", marginTop: "-.4rem" } : null
+        }
+        className={InputStyling.Label}
+      >
+        {props.label}
+      </label>
     </div>
   );
-}
+};
 
 export default input;

@@ -1,13 +1,21 @@
 .Input {
+  position: relative;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
+  text-align: left;
 }
 
 .Label {
+  position: absolute;
   font-weight: bold;
-  display: block;
+  visibility: hidden;
   margin-bottom: 8px;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  width: 100%;
+  transition: 0.2s;
 }
 
 .InputElement {
@@ -22,11 +30,19 @@
 }
 
 .InputElement:focus {
-  outline: none;
-  background-color: #ccc;
+  outline: 4px solid #ac3f21;
+  /* border: #AC3F21 3px solid; */
 }
 
 .Invalid {
-  border: 1px solid red;
+  outline: 4px solid red !important;
   background-color: #ccc;
+}
+
+input:focus + label {
+  top: 0%;
+  margin-top: -.4rem;
+  visibility: visible;
+  /* margin-left: 10px; */
+  color: white;
 }

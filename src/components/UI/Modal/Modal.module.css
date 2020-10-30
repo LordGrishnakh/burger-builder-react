@@ -7,11 +7,12 @@
   width: 70%;
   box-shadow: 1px 1px 1px black;
   left: 15%;
-  top: 30%;
+  top: 15%;
   transition: all 0.3s ease-out;
 }
 
 .Header {
+  color: white;
   height: 100px;
   background-color: #4d2a07;
   display: flex;

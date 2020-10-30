@@ -17,10 +17,14 @@
 .Button:disabled {
   color: #ccc;
   cursor: not-allowed;
+  border: 3px solid #ccc;
+  border-radius: 15px;
 }
 
 .Success {
   color: #5C9210;
+  border: 3px solid #5C9210;
+  border-radius: 15px;
 }
 
 .Danger {
