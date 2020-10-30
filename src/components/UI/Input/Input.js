@@ -37,13 +37,19 @@ const input = (props) => {
     case "select":
       inputElement = (
         <select
+          style={{
+            height: "160px",
+            width: "160px",
+            backgroundImage: `url(${
+              props.elementConfig.options[props.burgerId - 1].img
+            })`,
+          }}
           className={inputStyles.join(" ")}
-          onChange={props.changed}
-          value={props.value}
+          onChange={(e) => props.changeBurgerImage(e.target.value)}
         >
           {props.elementConfig.options.map((option, idx) => (
-            <option key={idx} value={option.value}>
-              {option.displayValue}
+            <option key={idx} value={option.id}>
+              {option.title}
             </option>
           ))}
         </select>

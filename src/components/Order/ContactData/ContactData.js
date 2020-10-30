@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../../UI/Button/Button";
 import Spinner from "../../UI/Spinner/Spinner";
 
@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
 
 const ContactData = (props) => {
+  const [burgerId, setBurgerId] = useState(1);
   const [orderForm, setOrderForm] = useState({
     name: {
       elementType: "input",
@@ -40,6 +41,52 @@ const ContactData = (props) => {
       touched: false,
     },
   });
+
+  useEffect(() => {
+    if (props.burgerSelect) {
+      setOrderForm({
+        name: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Name",
+          },
+          value: "",
+          validation: {
+            required: true,
+            minLength: 5,
+          },
+          valid: false,
+          touched: false,
+        },
+        street: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Street",
+          },
+          value: "",
+          validation: {
+            required: true,
+            minLength: 5,
+          },
+          valid: false,
+          touched: false,
+        },
+        burgerSelect: {
+          elementType: "select",
+          elementConfig: {
+            options: props.options,
+          },
+          value: "fastest",
+          validation: {
+            required: false,
+          },
+          valid: true,
+        },
+      });
+    }
+  }, []);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -90,7 +137,7 @@ const ContactData = (props) => {
     for (let inputIdentifier in updatedOrderForm) {
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
-
+    console.log(event.target, inputIdentifier, burgerId);
     setOrderForm(updatedOrderForm);
     setFormIsValid(formIsValid);
   };
@@ -102,7 +149,6 @@ const ContactData = (props) => {
       config: orderForm[key],
       label: orderForm[key].elementConfig.placeholder,
     });
-    console.log(formElements);
   }
 
   let form = (
@@ -118,6 +164,8 @@ const ContactData = (props) => {
           shouldValidate={formElement.config.validation.required}
           elementConfig={formElement.config.elementConfig}
           value={formElement.config.value}
+          changeBurgerImage={setBurgerId}
+          burgerId={burgerId}
         />
       ))}
       <Button btnType="Success" disabled={!formIsValid}>
