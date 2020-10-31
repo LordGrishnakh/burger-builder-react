@@ -1,24 +1,27 @@
 .Sample {
   width: 30%;
-  height: 40vh;
+  height: 50vh;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
 
+  padding: 2rem 0;
   margin-left: 2rem;
   border: 3px solid black;
   border-radius: 15px;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 .Overlay {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, .5);
 }
 
@@ -56,22 +59,21 @@
   }
 }
 
-/* Extra small devices (phones, up to 480px) */
-@media screen and (max-width: 767px) {
+@media (max-width: 1120px) {
   .Sample {
-    width: 100%;
-    margin-left: 0rem;
-    margin-top: 2rem;
-
+    width: 50%;
+    height: 50vh;
+  }
+  .Sample:last-of-type {
+    display: none;
   }
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991px) {
-
-}
-
-/* tablets/desktops and up  */
-@media (min-width: 992px) and (max-width: 1199px) {
-
+@media (max-width: 750px) {
+  .Sample:first-of-type {
+    display: none;
+  }
+  .Sample {
+    width: 90%;
+  }
 }

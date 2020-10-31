@@ -1,6 +1,6 @@
 .Container {
   background: #ffa45c;
-  height: 30vh;
+  min-height: 30vh;
   width: 100%;
   display: flex;
 }
@@ -8,7 +8,7 @@
 .Title {
   background: #ffa45c;
   text-align: center;
-  padding-top: 2rem;
+  padding: 2rem 0;
   color: brown;
 }
 
@@ -36,7 +36,7 @@
   color: #ffa45c;
 }
 
-@media(max-width: 500px) {
+@media(max-width: 600px) {
   .Container {
     height: auto;
     display: block;

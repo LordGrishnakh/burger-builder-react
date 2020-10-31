@@ -39,7 +39,8 @@ const input = (props) => {
         <select
           style={{
             height: "160px",
-            width: "160px",
+            width: "50%",
+            color: "white",
             backgroundImage: `url(${
               props.elementConfig.options[props.burgerId - 1].img
             })`,
@@ -48,7 +49,7 @@ const input = (props) => {
           onChange={(e) => props.changeBurgerImage(e.target.value)}
         >
           {props.elementConfig.options.map((option, idx) => (
-            <option key={idx} value={option.id}>
+            <option style={{color: "black"}} key={idx} value={option.id}>
               {option.title}
             </option>
           ))}

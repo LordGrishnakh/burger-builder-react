@@ -1,5 +1,6 @@
 .CardContainer {
   background-color: black;
+  /* min-height: 360px; */
   color: white;
   position: sticky;
   z-index: 2;
@@ -82,7 +83,7 @@
 .FloatingText {
   position: fixed;
   font-size: 2rem;
-  color: orange;
+  color: red;
 }
 
 .Disabled {
