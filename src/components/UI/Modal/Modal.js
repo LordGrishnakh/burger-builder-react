@@ -13,8 +13,6 @@ const Modal = (props) => {
           transform: props.show ? "translateY(0)" : "translateY(-100vh)",
           opacity: props.show ? "1" : "0",
           backgroundImage: `url(${props.chosenBurgerPhoto})`,
-          // backgroundSize: "cover",
-          // backgroundRepeat: "no-repeat",
         }}
       >
         <div className={ModalStyling.Header}>

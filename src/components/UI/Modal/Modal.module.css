@@ -23,9 +23,13 @@
   font-size: 2rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .Modal {
-    width: 500px;
-    left: calc(50% - 250px);
+    width: 100%;
+    left: 0;
+    font-size: 90%;
+  }
+  .Header p {
+    font-size: 1.4rem;
   }
 }

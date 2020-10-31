@@ -9,7 +9,7 @@ import ContactData from "../../Order/ContactData/ContactData";
 
 const SelectedProduct = (props) => {
   const [purchasing, setPurchasing] = useState(false);
-  const [chosenBurgerPhoto, setChosenBurgerPhoto] = useState("")
+  const [chosenBurgerPhoto, setChosenBurgerPhoto] = useState("");
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);
   const textRef = useRef(null);
@@ -17,9 +17,9 @@ const SelectedProduct = (props) => {
   useEffect(() => {
     if (props.purchased) {
       setPurchasing(false);
-      console.log("purchased")
+      console.log("purchased");
     }
-  }, [props.purchased])
+  }, [props.purchased]);
 
   const moveText = (e) => {
     setTop(e.clientY);
@@ -55,7 +55,7 @@ const SelectedProduct = (props) => {
   const orderHandler = () => {
     setChosenBurgerPhoto(productsShop[props.selectedBurger - 1].img);
     setPurchasing(true);
-  }
+  };
 
   let loadingContent = (
     <div className={SelectedProductStyling.ActionButtons}>
@@ -88,7 +88,11 @@ const SelectedProduct = (props) => {
 
   return (
     <div className={SelectedProductStyling.CardContainer}>
-      <Modal show={purchasing} hideModal={hideModalHandler} chosenBurgerPhoto={chosenBurgerPhoto} >
+      <Modal
+        show={purchasing}
+        hideModal={hideModalHandler}
+        chosenBurgerPhoto={chosenBurgerPhoto}
+      >
         <div className={SelectedProductStyling.Form}>
           <ContactData igns={burger.ingredients} price={burger.price} />
         </div>
@@ -96,7 +100,7 @@ const SelectedProduct = (props) => {
       <h1>{burger.title}</h1>
       <img src={burger.img} alt={burger.title} />
       <div className={SelectedProductStyling.CardContent}>
-        <p>{burger.info}</p>
+        <p>{burger.info.slice(0, burger.info.length / 2)}</p>
         <span>{burger.price} &#8381;</span>
         {loadingContent}
       </div>
